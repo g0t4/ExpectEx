@@ -48,7 +48,9 @@ namespace ExpectEx.Tests
 		public void Visit_CompareSameMethodsOnDifferntObjects_ThrowsWarning()
 		{
 			var account = new Account();
+			account.SetName("A");
 			var otherAccount = new Account();
+			account.SetName("B");
 			var inspector = new InspectExpressionVisitor();
 			Expression<Func<bool>> expression = () => account.GetMe().GetName() == otherAccount.GetMe().GetName();
 
@@ -69,5 +71,45 @@ namespace ExpectEx.Tests
 
 			Assert.That(action, Throws.Nothing);			
 		}
+
+		[Test]
+		public void Visit_ComparisonOfDefaultValueForValueType_Warns()
+		{
+			int a = default(int);
+			int b = default(int);
+			var inspector = new InspectExpressionVisitor();
+			Expression<Func<bool>> expression = () => a == b;
+
+			TestDelegate action = () => inspector.Visit(expression);
+
+			Assert.That(action, Throws.TypeOf<DefaultValueWarning>().With.Message.EqualTo("Comparison of value types where both are the default value."));
+		}
+
+		[Test]
+		public void Visit_ComparisonOfNotDefaultValueForValueType_DoesNotWarn()
+		{
+			int a = 1;
+			int b = default(int);
+			var inspector = new InspectExpressionVisitor();
+			Expression<Func<bool>> expression = () => a == b;
+
+			TestDelegate action = () => inspector.Visit(expression);
+
+			Assert.That(action, Throws.Nothing);
+		}
+
+		[Test]
+		public void Visit_ComparisonOfDefaultValueForReferenceType_Warns()
+		{
+			Account account = null;
+			Account otherAccount = null;
+			var inspector = new InspectExpressionVisitor();
+			Expression<Func<bool>> expression = () => account == otherAccount;
+
+			TestDelegate action = () => inspector.Visit(expression);
+
+			Assert.That(action, Throws.TypeOf<DefaultValueWarning>().With.Message.EqualTo("Comparison where both values are null."));
+		}
+	
 	}
 }

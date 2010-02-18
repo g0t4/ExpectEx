@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertionExpressionVisitor.cs" />
+    <Compile Include="DefaultValueWarning.cs" />
     <Compile Include="ExpressionVisitor.cs" />
     <Compile Include="InspectExpressionVisitor.cs" />
     <Compile Include="InspectionWarning.cs" />

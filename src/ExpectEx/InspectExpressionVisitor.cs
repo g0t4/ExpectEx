@@ -19,6 +19,26 @@ namespace ExpectEx
 					same = CompareMethods(b.Left, b.Right);
 				}
 				if (same) throw new InspectionWarning("Operands of equality check are the same: always true");
+
+				var leftResult = Expression.Lambda(b.Left).Compile().DynamicInvoke();
+				var rightResult = Expression.Lambda(b.Right).Compile().DynamicInvoke();
+				
+				if(leftResult == null && rightResult == null)
+				{
+					throw new DefaultValueWarning("Comparison where both values are null.");
+				}
+
+				if (leftResult != null && rightResult != null
+					&& leftResult.Equals(rightResult)
+					&& leftResult.GetType().IsValueType
+					)
+				{
+					var defaultValue = Activator.CreateInstance(leftResult.GetType());
+					if (leftResult.Equals(defaultValue))
+					{
+						throw new DefaultValueWarning("Comparison of value types where both are the default value.");
+					}
+				}
 			}
 			return b;
 		}
