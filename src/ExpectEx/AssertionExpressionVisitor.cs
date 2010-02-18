@@ -124,6 +124,10 @@ namespace ExpectEx
 			var operation = typeof (BinaryExpression).GetMethod("GetOperator", BindingFlags.NonPublic | BindingFlags.Instance).
 				Invoke(
 				b, null);
+			if (operation == "=")
+			{
+				operation = "==";
+			}
 			_Builder.AppendFormat(" {0} ", operation);
 		}
 

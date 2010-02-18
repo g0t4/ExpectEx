@@ -173,7 +173,7 @@ namespace ExpectEx.Tests
 		}
 
 		[Test]
-		public void Print_EqualityExpression_Prints()
+		public void Print_EqualityExpression_PrintsWithDoubleEqualSign()
 		{
 			var condition1 = 1;
 			var condition2 = 2;
@@ -183,7 +183,7 @@ namespace ExpectEx.Tests
 			visitor.Visit(equalityExpression);
 
 			var message = visitor.GetAssertionMessage();
-			Expect(message, Is.EqualTo("(condition1 [1] = condition2 [2]) [False]"));
+			Expect(message, Is.EqualTo("(condition1 [1] == condition2 [2]) [False]"));
 		}
 	}
 }
