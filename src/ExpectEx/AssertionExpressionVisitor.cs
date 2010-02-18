@@ -10,6 +10,8 @@ namespace ExpectEx
 		private StringBuilder _Builder;
 		private bool _NestedAccess;
 
+		public bool EvaluateValues = true;
+
 		public AssertionExpressionVisitor()
 		{
 			_Builder = new StringBuilder();
@@ -77,6 +79,10 @@ namespace ExpectEx
 
 		private void AppendValue(Expression expression)
 		{
+			if(!EvaluateValues)
+			{
+				return;
+			}
 			var executor = Expression.Lambda(expression).Compile();
 			if (executor.Method.ReturnType == typeof (void))
 			{

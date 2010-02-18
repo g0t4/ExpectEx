@@ -185,5 +185,21 @@ namespace ExpectEx.Tests
 			var message = visitor.GetAssertionMessage();
 			Expect(message, Is.EqualTo("(condition1 [1] == condition2 [2]) [False]"));
 		}
+
+		[Test]
+		public void Print_WithEvaluatingOff_PrintsWithoutValues()
+		{
+			var a = 1;
+			var b = 2;
+			var visitor = new AssertionExpressionVisitor();
+			visitor.EvaluateValues = false;
+			Expression<Func<bool>> expression = () => a + b + 3 == 6;
+
+			visitor.Visit(expression);
+
+			var message = visitor.GetAssertionMessage();
+			Console.WriteLine(message);
+			Expect(message, Is.EqualTo("(((a + b) + 3) == 6)"));
+		}
 	}
 }
