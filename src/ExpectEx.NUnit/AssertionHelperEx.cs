@@ -8,6 +8,8 @@ namespace ExpectEx.NUnit
 	{
 		public void Expect(Expression<Func<bool>> expression)
 		{
+			var inspector = new InspectExpressionVisitor();
+			inspector.Check(expression);
 			var pass = expression.Compile().Invoke();
 			var visitor = new AssertionExpressionVisitor();
 			visitor.GenerateAssertionMessage(expression);

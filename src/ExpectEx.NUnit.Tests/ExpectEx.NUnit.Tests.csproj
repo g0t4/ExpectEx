@@ -57,6 +57,14 @@
       <Project>{8237CF6C-B19F-44DA-B445-3EEE66B78074}</Project>
       <Name>ExpectEx.NUnit</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExpectEx.Tests\ExpectEx.Tests.csproj">
+      <Project>{A86672D0-D5EA-41FA-85C1-4DD24D3C2F3D}</Project>
+      <Name>ExpectEx.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExpectEx\ExpectEx.csproj">
+      <Project>{0344E262-CAF6-4E93-97BA-3DCE451AC055}</Project>
+      <Name>ExpectEx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

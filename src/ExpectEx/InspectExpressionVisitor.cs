@@ -1,5 +1,6 @@
 namespace ExpectEx
 {
+	using System;
 	using System.Linq.Expressions;
 
 	public class InspectExpressionVisitor : ExpressionVisitor
@@ -41,6 +42,11 @@ namespace ExpectEx
 				return false;
 			}
 			return (left as MemberExpression).Member == (right as MemberExpression).Member;
+		}
+
+		public void Check(Expression expression)
+		{
+			this.Visit(expression);
 		}
 	}
 }
