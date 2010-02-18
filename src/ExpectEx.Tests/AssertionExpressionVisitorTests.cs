@@ -14,7 +14,7 @@ namespace ExpectEx.Tests
 
 			visitor.VisitConstant(Expression.Constant(true));
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("True"));
 		}
 
@@ -26,7 +26,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(constantExpression);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("5"));
 		}
 
@@ -39,7 +39,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(constantExpression);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("number [5]"));
 		}
 
@@ -52,7 +52,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(unaryExpression);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("intNumber [5]"));
 		}
 
@@ -66,7 +66,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(binaryExpression);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("(a [1] * b [2]) [2]"));
 		}
 
@@ -81,7 +81,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(binaryExpression);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("(a [1] * (b [2] + c [3]) [5]) [5]"));
 		}
 
@@ -96,7 +96,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(memberAccess);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("account.Balance [100]"));
 		}
 
@@ -111,8 +111,15 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(memberAccess);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("(a [True] ? b [False] : c [True])"));
+		}
+
+		private string GetMessage(AssertionExpressionVisitor visitor)
+		{
+			var message = visitor.GetAssertionMessage();
+			Console.WriteLine(message);
+			return message;
 		}
 
 		[Test]
@@ -124,7 +131,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(arrayAccessor);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("a[1] [2]"));
 		}
 
@@ -138,7 +145,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(methodCall);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("account.GetName() ['Bob']"));
 		}
 
@@ -154,7 +161,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(methodWithArgument);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("account.Deposits(amount [100], otherAmount [200])"));
 		}
 
@@ -168,7 +175,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(queryWithArgument);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("account.AddNumbers(a [2], 1) [3]"));
 		}
 
@@ -182,7 +189,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(equalityExpression);
 
-			var message = visitor.GetAssertionMessage();
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("(condition1 [1] == condition2 [2]) [False]"));
 		}
 
@@ -197,8 +204,7 @@ namespace ExpectEx.Tests
 
 			visitor.Visit(expression);
 
-			var message = visitor.GetAssertionMessage();
-			Console.WriteLine(message);
+			var message = GetMessage(visitor);
 			Expect(message, Is.EqualTo("(((a + b) + 3) == 6)"));
 		}
 	}
