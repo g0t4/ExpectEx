@@ -2,7 +2,7 @@ namespace ExpectEx.Tests
 {
 	using System;
 	using System.Linq.Expressions;
-	using NUnit.Framework;
+	using global::NUnit.Framework;
 
 	[TestFixture]
 	public class ExpressionPrinterTests : AssertionHelper

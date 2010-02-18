@@ -30,5 +30,10 @@ namespace ExpectEx.Tests
 		{
 			return _Name;
 		}
+
+		public Account GetMe()
+		{
+			return this;
+		}
 	}
 }

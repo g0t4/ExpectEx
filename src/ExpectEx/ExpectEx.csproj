@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="AssertionExpressionVisitor.cs" />
     <Compile Include="ExpressionVisitor.cs" />
+    <Compile Include="InspectExpressionVisitor.cs" />
+    <Compile Include="InspectionWarning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
