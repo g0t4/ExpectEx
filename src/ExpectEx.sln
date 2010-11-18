@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpectEx", "ExpectEx\ExpectEx.csproj", "{0344E262-CAF6-4E93-97BA-3DCE451AC055}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpectEx.Tests", "ExpectEx.Tests\ExpectEx.Tests.csproj", "{A86672D0-D5EA-41FA-85C1-4DD24D3C2F3D}"

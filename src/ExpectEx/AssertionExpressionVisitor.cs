@@ -127,13 +127,7 @@ namespace ExpectEx
 				_Builder.Append("[");
 				return;
 			}
-			var operation = typeof (BinaryExpression).GetMethod("GetOperator", BindingFlags.NonPublic | BindingFlags.Instance).
-				Invoke(
-				b, null);
-			if (operation == "=")
-			{
-				operation = "==";
-			}
+			var operation = ExpressionTypeLookup.GetBinaryOperation(b.NodeType);
 			_Builder.AppendFormat(" {0} ", operation);
 		}
 
