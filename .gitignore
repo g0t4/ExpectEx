@@ -4,10 +4,12 @@ bin
 deploy
 deploy/*
 _ReSharper.*
-*.csproj.user
-*.resharper.user
+*.user
 *.resharper
 *.suo
 *.cache
 ~$*
 /src/.gitignore
+
+[Pp]ackages/
+[Bb]uild/

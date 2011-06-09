@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F56922CD-3052-47ED-9ECE-E017E7A71781}</ProjectGuid>
+    <ProjectGuid>{A86672D0-D5EA-41FA-85C1-4DD24D3C2F3D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExpectEx.NUnit.Tests</RootNamespace>
-    <AssemblyName>ExpectEx.NUnit.Tests</AssemblyName>
+    <RootNamespace>ExpectEx.Tests</RootNamespace>
+    <AssemblyName>ExpectEx.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -52,9 +52,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.3.9345, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml.Linq">
@@ -67,18 +66,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="AssertionExpressionVisitorTests.cs" />
     <Compile Include="AssertionHelperExTests.cs" />
+    <Compile Include="InspectExpressionVisitorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExpectEx.NUnit\ExpectEx.NUnit.csproj">
-      <Project>{8237CF6C-B19F-44DA-B445-3EEE66B78074}</Project>
-      <Name>ExpectEx.NUnit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExpectEx.Tests\ExpectEx.Tests.csproj">
-      <Project>{A86672D0-D5EA-41FA-85C1-4DD24D3C2F3D}</Project>
-      <Name>ExpectEx.Tests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ExpectEx\ExpectEx.csproj">
       <Project>{0344E262-CAF6-4E93-97BA-3DCE451AC055}</Project>
       <Name>ExpectEx</Name>
@@ -100,6 +94,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

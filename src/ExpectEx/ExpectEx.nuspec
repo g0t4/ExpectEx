@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>NUnit.ExpectEx</id>
+    <version>$version$</version>
+    <authors>Wes McClure</authors>
+    <owners>Wes McClure</owners>
+    <licenseUrl>https://github.com/g0t4/ExpectEx</licenseUrl>
+    <projectUrl>https://github.com/g0t4/ExpectEx</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An extension to nunit assertions to reflect on lambda expressions passed to an expect method to give better output of what goes wrong on failures, rather than the builtin assertions.</description>
+    <tags>NUnit</tags>
+    <dependencies>
+      <dependency id="NUnit" version="2.0" />
+    </dependencies>
+  </metadata>
+</package>
