@@ -89,7 +89,7 @@ namespace ExpectEx
 				return;
 			}
 			var value = executor.DynamicInvoke();
-			if (value.GetType() == typeof (string) || value.GetType() == typeof (char))
+			if (value is string || value is char)
 			{
 				value = string.Format("'{0}'", value);
 			}
