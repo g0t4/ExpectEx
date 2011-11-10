@@ -6,10 +6,15 @@ namespace ExpectEx.NUnit
 
 	public class AssertionHelperEx : AssertionHelper
 	{
-		public void Expect(Expression<Func<bool>> expression)
+		public static bool EnableExpressionInspection;
+
+		public virtual void Expect(Expression<Func<bool>> expression)
 		{
-			var inspector = new InspectExpressionVisitor();
-			inspector.Check(expression);
+			if (EnableExpressionInspection)
+			{
+				var inspector = new InspectExpressionVisitor();
+				inspector.Check(expression);
+			}
 			var pass = expression.Compile().Invoke();
 			var visitor = new AssertionExpressionVisitor();
 			visitor.GenerateAssertionMessage(expression);
